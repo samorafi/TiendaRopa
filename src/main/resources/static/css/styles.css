@@ -1,0 +1,70 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 12 nov 2024, 14:18:52
+    Author     : sebas
+*/
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: var(--dark-color) !important;
+}
+
+.hero {
+    background: var(--primary-color) !important;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.btn-outline-custom-light {
+    color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+}
+
+.btn-outline-custom-light:hover {
+    background-color: var(--accent-color) !important;
+    color: #fff !important;
+}
+
+.btn-custom-warning {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+    color: #fff !important;
+}
+
+.btn-custom-warning:hover {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+}
+
+.features {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.feature {
+    margin-bottom: 30px;
+}
+
+.feature h3 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: var(--darker-color) !important;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
