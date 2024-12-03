@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.TiendaRopa</groupId>
     <artifactId>TiendaRopa</artifactId>
@@ -53,6 +53,11 @@
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>             
+            <groupId>com.google.firebase</groupId>             
+            <artifactId>firebase-admin</artifactId>             
+            <version>9.2.0</version>         
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
