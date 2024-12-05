@@ -3,7 +3,8 @@ package com.TiendaRopa.controller;
 import com.TiendaRopa.domain.Producto;
 import com.TiendaRopa.service.CategoriaService;
 import com.TiendaRopa.service.ProductoService;
-import com.TiendaRopa.service.FirebaseStorageService;
+import com.TiendaRopa.service.impl.FirebaseStorageServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,21 +15,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
+@Slf4j
 @RequestMapping("/producto")
 public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
+
     @Autowired
     private CategoriaService categoriaService;
 
     @GetMapping("/listado")
-    public String listado(Model model) {
-        var categorias = categoriaService.getCategorias(false);
-        model.addAttribute("categorias", categorias);
-
+    public String inicio(Model model) {
         var productos = productoService.getProductos(false);
+        var categorias = categoriaService.getCategorias(false);
         model.addAttribute("productos", productos);
+        model.addAttribute("categorias", categorias);
         model.addAttribute("totalProductos", productos.size());
         return "/producto/listado";
     }
@@ -39,7 +41,7 @@ public class ProductoController {
     }
 
     @Autowired
-    private FirebaseStorageService firebaseStorageService;
+    private FirebaseStorageServiceImpl firebaseStorageService;
 
     @PostMapping("/guardar")
     public String productoGuardar(Producto producto,
@@ -64,10 +66,10 @@ public class ProductoController {
 
     @GetMapping("/modificar/{idProducto}")
     public String productoModificar(Producto producto, Model model) {
-        var categorias = categoriaService.getCategorias(false);
-        model.addAttribute("categorias", categorias);
         producto = productoService.getProducto(producto);
+        var categorias = categoriaService.getCategorias(false);
         model.addAttribute("producto", producto);
+        model.addAttribute("categorias", categorias);
         return "/producto/modifica";
     }
 }

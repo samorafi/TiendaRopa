@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>TechShop</title>
+        <title>Tienda de Ropa</title>
     </head>
     <body>
         <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
@@ -76,6 +76,7 @@
                                     <thead class="table-dark">
                                         <tr><th>#</th>
                                             <th>[[#{categoria.descripcion}]]</th>
+                                            <th>[[#{categoria.rutaImagen}]]</th>
                                             <th>[[#{categoria.activo}]]</th>
                                             <th></th></tr>
                                     </thead>
@@ -83,6 +84,7 @@
                                         <tr th:each="categoria, contador : ${categorias}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${categoria.descripcion}]]</td>
+                                            <td><img th:src="@{${categoria.rutaImagen}}" alt="Imagen de la categoria" class="img-fluid" style="width: 150px; height: 150px; object-fit: cover;" /></td>
                                             <td th:text="${categoria.activo} ? 'Activa' : 'Inactiva'" />
                                             <td><a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
                                                    class="btn btn-danger">
@@ -98,8 +100,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card text-center bg-success text-white mb-3">
+                    <div class="col-md">
+                        <div class="card text-center bg-dark text-white mb-1">
                             <div class="card-body">
                                 <h3>[[#{categoria.total}]]</h3>
                                 <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalCategorias}]]</h4>
@@ -109,6 +111,7 @@
                 </div>
             </div>
         </section>
+
 
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
         <section th:fragment="editarCategoria">
