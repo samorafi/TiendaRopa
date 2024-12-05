@@ -30,16 +30,20 @@
                                 <a class="nav-menu-link nav-link" th:href="@{/contacto/listado}">[[#{plantilla.contacto}]]</a>
                             </li>
                             <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/faq/listado}">[[#{plantilla.faq}]]</a>
+                            </li>
+                            <li class="nav-item px-2">
                                 <a class="nav-menu-link nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a>
                             </li>
                             <li class="nav-item px-2">
                                 <a class="nav-menu-link nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a>
                             </li>
                         </ul>
-                        <form class="d-flex me-3">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                        <form class="d-flex me-3" th:action="@{/producto/buscar}" method="get">
+                            <input class="form-control me-2" type="search" name="query" placeholder="Buscar" aria-label="Buscar">
                                 <button class="btn btn-outline-light" type="submit">Buscar</button>
                         </form>
+
                         <div class="d-flex align-items-center">
                             <a href="#" class="btn btn-outline-light me-3">
                                 <i class="bi bi-cart"></i> Carrito

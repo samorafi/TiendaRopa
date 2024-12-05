@@ -4,6 +4,7 @@ import com.TiendaRopa.domain.Producto;
 import com.TiendaRopa.service.CategoriaService;
 import com.TiendaRopa.service.ProductoService;
 import com.TiendaRopa.service.impl.FirebaseStorageServiceImpl;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -71,5 +72,13 @@ public class ProductoController {
         model.addAttribute("producto", producto);
         model.addAttribute("categorias", categorias);
         return "/producto/modifica";
+    }
+
+    ////////////////////////////////////////////////////////////////
+    @GetMapping("/buscar")
+    public String buscarProductos(@RequestParam("query") String query, Model model) {
+        List<Producto> productos = productoService.buscarPorNombre(query);
+        model.addAttribute("productos", productos);
+        return "/producto/buscar";
     }
 }

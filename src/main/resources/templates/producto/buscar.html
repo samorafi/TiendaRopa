@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>TechShop</title>
+        <!-- Enlace al archivo CSS externo -->
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <div class="container">
+            <h2>Buscar Productos</h2>
+            <form th:action="@{/producto/buscar}" method="GET">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control" placeholder="Buscar por nombre de producto" required />
+                    <button class="btn btn-dark" type="submit">Buscar</button>
+                </div>
+            </form>
+
+            <div th:if="${productos != null}">
+                <h3>Resultados de la búsqueda:</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Descripción</th>
+                            <th>Detalle</th>
+                            <th>Imagen</th>
+                            <th>Precio</th>
+                            <th>Existencias</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="producto : ${productos}">
+                            <td th:text="${producto.idProducto}"></td>
+                            <td th:text="${producto.descripcion}"></td>
+                            <td th:text="${producto.detalle}"></td>
+                            <td><img th:src="@{${producto.rutaImagen}}" alt="Imagen del producto" class="img-fluid" /></td>
+                            <td th:text="${producto.precio}"></td>
+                            <td th:text="${producto.existencias}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${productos == null or productos.isEmpty()}">
+                <p>No se encontraron productos.</p>
+            </div>
+        </div>
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>      
+    </body>
+</html>

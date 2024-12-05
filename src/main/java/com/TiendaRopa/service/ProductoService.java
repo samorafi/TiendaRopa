@@ -24,4 +24,8 @@ public interface ProductoService {
 
     List<Producto> metodoNativo(double precioInf, double precioSup);
     
+    /////////////////////////////////////////////////////////
+    
+    public List<Producto> buscarPorNombre(String query);
+
 }
