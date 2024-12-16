@@ -38,6 +38,7 @@ public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDet
         //Si estamos acá es porque si se recuperó un usuario...
         session.removeAttribute("usuarioImagen");
         session.setAttribute("usuarioImagen", usuario.getRutaImagen());
+        session.setAttribute("usuarioNombre", usuario.getNombre());
         
         //Se van a recuperar los roles del usuario y se crean los roles ya como seguridad de Spring
         var roles = new ArrayList<GrantedAuthority>();
