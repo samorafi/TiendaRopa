@@ -24,19 +24,19 @@
         <section th:fragment="resenas" class="reviews py-5 bg-light">
             <div class="container">
                 <h2 class="text-center mb-4">[[#{nosotros.reseñasTitulo}]]</h2>
-                <div class="row">
+                <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
                     <div class="col-md-8 mb-4">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <h5 class="card-title">[[#{nosotros.dejarReseña}]]</h5>
-                                <form>
+                                <form th:action="@{/nosotros/resenas/guardar}" method="POST" th:object="${resena}">
                                     <div class="mb-3">
                                         <label for="reviewName" class="form-label">[[#{usuario.nombre}]]</label>
-                                        <input type="text" class="form-control" id="reviewName" required>
+                                        <input type="text" class="form-control" id="reviewName" name="nombre" th:field="*{nombre}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="reviewText" class="form-label">[[#{nosotros.escribirReseña}]]</label>
-                                        <textarea class="form-control" id="reviewText" rows="3" required></textarea>
+                                        <textarea class="form-control" id="reviewText" name="comentario" th:field="*{comentario}" rows="3" required></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-custom-warning">[[#{nosotros.enviarReseña}]]</button>
                                 </form>
@@ -45,21 +45,23 @@
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <h5 class="card-title">[[#{nosotros.listaReseñas}]]</h5>
                                 <hr>
-                                    <p class="card-text">"La calidad de las prendas es excelente y el servicio al cliente es inigualable."</p>
-                                    <p class="card-text"><small class="text-muted">- Cliente satisfecho</small></p>
-                                    <hr>
-                                        <p class="card-text">"Una experiencia de compra muy buena. Definitivamente volveré."</p>
-                                        <p class="card-text"><small class="text-muted">- Otro cliente satisfecho</small></p>
-                                        </div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                        </section>
+                                    <div th:each="resena : ${resenas}">
+                                        <p class="card-text" th:text="|${resena.comentario}|"></p>
+                                        <p class="card-text">
+                                            <small class="text-muted" th:text="|-${resena.nombre}|"></small>
+                                        </p>
+                                        <hr>
+                                    </div>
+                                    <p class="text-muted" th:if="${#lists.isEmpty(resenas)}">[[#{nosotros.sinReseñas}]]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-
-                                        </body>
-                                        </html>
+    </body>
+</html>

@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -31,6 +32,11 @@ public class ProjectConfig implements WebMvcConfigurer {
         slr.setLocaleAttributeName("session.current.locale");
         slr.setTimeZoneAttributeName("session.current.timezone");
         return slr;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     /* localeChangeInterceptor se utiliza para crear un interceptor de cambio de idioma*/
@@ -68,36 +74,78 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                .requestMatchers("/errores/**",
-                        "/carrito/**", "/pruebas/**", "/reportes/**",
-                        "/registro/**", "/js/**", "/webjars/**", "/producto/buscar", "/", "/index")
-                .permitAll()
+                // Rutas públicas
                 .requestMatchers(
-                        "/producto/nuevo", "/producto/guardar",
-                        "/producto/modificar/**", "/producto/eliminar/**",
-                        "/categoria/nuevo", "/categoria/guardar",
-                        "/categoria/modificar/**", "/categoria/eliminar/**",
-                        "/usuario/nuevo", "/usuario/guardar",
-                        "/usuario/modificar/**", "/usuario/eliminar/**",
+                        "/",
+                        "/index",
+                        "/errores/**",
+                        "/contacto/cotizacion/guardar",
+                        "/contacto/listado",
+                        "/js/**",
+                        "/nosotros/resenas/guardar",
+                        "/pruebas/**",
+                        "/producto/buscar",
                         "/reportes/**",
-                        "/nosotros/listado", "/contacto/listado", "/faq/listado", "/producto/buscar?query=/**","/factura/listado"
-                ).hasRole("ADMIN")
-                .requestMatchers(
-                        "/producto/listado",
+                        "/registro/**",
+                        "/webjars/**",
                         "/categoria/listado",
-                        "/usuario/listado",
-                        "/nosotros/listado", "/contacto/listado", "/faq/listado", "/producto/buscar?query=/**"
+                        "/nosotros/listado",
+                        "/faq/listado",
+                        "/producto/listado",
+                        "/cotizacion/**"
+                ).permitAll()
+                // Rutas restringidas a ADMIN
+                .requestMatchers(
+                        "/categoria/nuevo",
+                        "/categoria/guardar", 
+                        "/categoria/modificar/**",
+                        "/categoria/eliminar/**",
+                        "/carrito/**",
+                        "/cotizacion/**",
+                        "/contacto/cotizaciones",
+                        "/factura/listado",
+                        "/producto/buscar?query=/**",
+                        "/producto/eliminar/**",
+                        "/producto/guardar",
+                        "/producto/modificar/**",
+                        "/producto/nuevo",
+                        "/reportes/**",
+                        "/usuario/eliminar/**",
+                        "/usuario/guardar",
+                        "/usuario/modificar/**",
+                        "/usuario/nuevo"
+                ).hasRole("ADMIN")
+                // Rutas restringidas a ADMIN y VENDEDOR
+                .requestMatchers(
+                        "/categoria/listado",
+                        "/categoria/guardar",
+                        "/nosotros/listado",
+                        "/contacto/listado",
+                        "/faq/listado",
+                        "/producto/listado",
+                        "/usuario/listado"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
-                .requestMatchers("/facturar/carrito", "/nosotros/listado", "/contacto/listado", "/faq/listado", "/producto/buscar?query=/**")
-                .hasRole("USER")
+                // Rutas restringidas a USER
+                .requestMatchers(
+                        "/facturar/carrito",
+                        "/nosotros/listado",
+                        "/contacto/listado",
+                        "/faq/listado",
+                        "/categoria/listado",
+                        "/producto/listado"
+                ).hasRole("USER")
                 )
+                // Configuración de inicio de sesión
                 .formLogin((form) -> form
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/index", true)) // Redirige siempre a /index tras login exitoso
+                .defaultSuccessUrl("/index", true)
+                )
+                // Configuración de cierre de sesión
                 .logout((logout) -> logout.permitAll());
+
         return http.build();
     }
-    
+
     @Autowired
     private UserDetailsService userDetailsService; //aqui se obtiene la info del usuario como por ejemplo el nombre, la contraseña y los roles
 

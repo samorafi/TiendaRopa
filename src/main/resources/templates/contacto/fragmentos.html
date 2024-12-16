@@ -32,18 +32,18 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">[[#{contacto.formulario}]]</h5>
-                                <form>
+                                <form th:action="@{/contacto/cotizacion/guardar}" method="POST" th:object="${cotizacion}">
                                     <div class="mb-3">
                                         <label for="quoteName" class="form-label">[[#{contacto.nombre}]]</label>
-                                        <input type="text" class="form-control" id="quoteName" required>
+                                        <input type="text" class="form-control" id="quoteName" name="nombre" th:field="*{nombre}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="quoteEmail" class="form-label">[[#{contacto.correo.cotizacion}]]</label>
-                                        <input type="email" class="form-control" id="quoteEmail" required>
+                                        <input type="email" class="form-control" id="quoteEmail" name="correo" th:field="*{correo}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="quoteDetails" class="form-label">[[#{contacto.detalles}]]</label>
-                                        <textarea class="form-control" id="quoteDetails" rows="4" required></textarea>
+                                        <textarea class="form-control" id="quoteDetails" name="detalle" th:field="*{detalle}" rows="4" required></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-custom-warning">[[#{contacto.enviar}]]</button>
                                 </form>
@@ -53,7 +53,6 @@
                 </div>
             </div>
         </section>
-
 
     </body>
 </html>

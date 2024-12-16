@@ -18,7 +18,6 @@
                     <thead class="table-dark">
                         <tr>
                             <th>#</th>
-                            <th>[[#{facturas.idFactura}]]</th>
                             <th>[[#{facturas.idUsuario}]]</th>
                             <th>[[#{facturas.fecha}]]</th>
                             <th>[[#{facturas.total}]]</th>
@@ -28,7 +27,6 @@
                     <tbody>
                         <tr th:each="factura, contador : ${facturas}">
                             <td th:text="${contador.count}"></td>
-                            <td th:text="${factura.idFactura}"></td>
                             <td th:text="${factura.idUsuario}"></td>
                             <td th:text="${#dates.format(factura.fecha, 'yyyy-MM-dd')}"></td>
                             <td th:text="${factura.total}"></td>
