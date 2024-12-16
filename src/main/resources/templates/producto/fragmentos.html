@@ -130,13 +130,16 @@
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
                                                 <a th:href="@{/producto/modificar/}+${producto.idProducto}"
                                                    class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a>
+                                                <a th:href="@{/carrito/agregar/}+${producto.idProducto}" class="btn btn-primary">
+                                                    <i class="fas fa-cart-plus"></i>[[#{accion.agregarCarrito}]]</a></td></tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="text-center p-2" th:if="${productos == null or productos.empty}">
                                 <span>[[#{lista.vacia}]]</span>
                             </div>
+
                         </div>
                     </div>
 
@@ -144,7 +147,7 @@
             </div>
         </section>
 
-        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+        <!-- 4 Fragmento que se utiliza en la página modifica.html -->
         <section th:fragment="editarProducto">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -154,10 +157,12 @@
                           th:object="${producto}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
+                        <!-- Campos ocultos -->
                         <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
                         <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
-                        <section th:replace="~{producto/fragmentos :: botonesEditar}"/>
-                        <div id=details>
+
+                        <!-- Detalles del producto -->
+                        <div id="details">
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
@@ -166,6 +171,7 @@
                                                 <h4>[[#{accion.actualizar}]]</h4>
                                             </div>
                                             <div class="card-body">
+                                                <!-- Campos del formulario -->
                                                 <div class="mb-3">
                                                     <label for="descripcion">[[#{producto.descripcion}]]</label>
                                                     <input type="text" class="form-control" 
@@ -216,13 +222,17 @@
                                                     <label for="imagen">[[#{producto.rutaImagen}]]</label>
                                                     <input class="form-control" type="file" name="imagenFile"
                                                            onchange="readURL(this);" />
-                                                    <img id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" height="200"/>
+                                                    <img id="blah" th:src="@{${producto.rutaImagen}}" alt="Imagen del producto" height="200"/>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Botones para editar -->
+                        <section th:replace="~{producto/fragmentos :: botonesEditar}"></section>
                     </form>
                 </div>
             </div>
@@ -250,7 +260,8 @@
                     </div>
                 </div>
             </div>
-        </section>  
+        </section>
+
 
     </body>
 </html>

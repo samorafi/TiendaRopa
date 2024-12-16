@@ -38,6 +38,9 @@
                             <li class="nav-item px-2">
                                 <a class="nav-menu-link nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a>
                             </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/factura/listado}">[[#{plantilla.factura}]]</a>
+                            </li>
                         </ul>
                         <form class="d-flex me-3" th:action="@{/producto/buscar}" method="get">
                             <input class="form-control me-2" type="search" name="query" placeholder="Buscar" aria-label="Buscar">
@@ -45,13 +48,9 @@
                         </form>
 
                         <div class="d-flex align-items-center">
-                            <a href="#" class="btn btn-outline-light me-3">
+                            <a th:href="@{/carrito/listado}" class="btn btn-outline-light me-3">
                                 <i class="bi bi-cart"></i> Carrito
-                            </a>
-                            <!--<a href="#" class="btn btn-outline-light">
-                                                            <i class="bi bi-person"></i> Iniciar Sesión
-                                                        </a>-->
-                            <!-- Bloque para usuarios no autenticados -->
+                            </a>                            
                             <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{/login}">
