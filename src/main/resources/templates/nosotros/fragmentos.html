@@ -11,34 +11,34 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2>Sobre Nosotros</h2>
-                        <p>En nuestra Tienda de Ropa, nuestra pasión es ofrecer productos de calidad que se adapten a las tendencias actuales y a las necesidades de nuestros clientes. Con años de experiencia en el sector, nos comprometemos a brindar un servicio excelente y garantizar la satisfacción de cada cliente.</p>
-                        <p>Nuestro equipo está compuesto por profesionales dedicados que se esfuerzan cada día para mejorar nuestra oferta y proporcionar la mejor experiencia de compra posible.</p>
+                        <h2>[[#{nosotros.titulo}]]</h2>
+                        <p>[[#{nosotros.descripcionA}]]</p>
+                        <p>[[#{nosotros.descripcionB}]]</p>
                     </div>
                     <div class="col-md-6">
-                        <img src="/img/cloth-store.jpg" alt="Imagen de una tienda"/>
+                        <img src="https://cdn-icons-gif.flaticon.com/10606/10606571.gif" alt="Imagen de una tienda" class="w-50 img-fluid"/>
                     </div>
                 </div>
             </div>
         </section>
         <section th:fragment="resenas" class="reviews py-5 bg-light">
             <div class="container">
-                <h2 class="text-center mb-4">Reseñas de Nuestros Clientes</h2>
+                <h2 class="text-center mb-4">[[#{nosotros.reseñasTitulo}]]</h2>
                 <div class="row">
                     <div class="col-md-8 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Dejar una Reseña</h5>
+                                <h5 class="card-title">[[#{nosotros.dejarReseña}]]</h5>
                                 <form>
                                     <div class="mb-3">
-                                        <label for="reviewName" class="form-label">Nombre</label>
+                                        <label for="reviewName" class="form-label">[[#{usuario.nombre}]]</label>
                                         <input type="text" class="form-control" id="reviewName" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="reviewText" class="form-label">Reseña</label>
+                                        <label for="reviewText" class="form-label">[[#{nosotros.escribirReseña}]]</label>
                                         <textarea class="form-control" id="reviewText" rows="3" required></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-custom-warning">Enviar Reseña</button>
+                                    <button type="submit" class="btn btn-custom-warning">[[#{nosotros.enviarReseña}]]</button>
                                 </form>
                             </div>
                         </div>
@@ -46,19 +46,20 @@
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Lo Que Dicen Nuestros Clientes</h5>
-                                <p class="card-text">"La calidad de las prendas es excelente y el servicio al cliente es inigualable."</p>
-                                <p class="card-text"><small class="text-muted">- Cliente satisfecho</small></p>
+                                <h5 class="card-title">[[#{nosotros.listaReseñas}]]</h5>
                                 <hr>
-                                    <p class="card-text">"Una experiencia de compra muy buena. Definitivamente volveré."</p>
-                                    <p class="card-text"><small class="text-muted">- Otro cliente satisfecho</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                                    <p class="card-text">"La calidad de las prendas es excelente y el servicio al cliente es inigualable."</p>
+                                    <p class="card-text"><small class="text-muted">- Cliente satisfecho</small></p>
+                                    <hr>
+                                        <p class="card-text">"Una experiencia de compra muy buena. Definitivamente volveré."</p>
+                                        <p class="card-text"><small class="text-muted">- Otro cliente satisfecho</small></p>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </section>
 
 
-    </body>
-</html>
+                                        </body>
+                                        </html>

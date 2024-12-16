@@ -8,9 +8,9 @@
         <header th:replace="~{layout/plantilla :: header}"></header>
         <section class="hero bg-primary text-white text-center py-5">
             <div class="container">
-                <h2>Bienvenido a nuestra Tienda de Ropa</h2>
-                <p>Nos dedicamos a ofrecer las mejores prendas para nuestros clientes.</p>
-                <a class="btn btn-warning" th:href="@{/producto/listado}">Ver Productos</a>
+                <h2>[[#{index.saludo}]]</h2>
+                <p>[[#{index.descripcion}]]</p>
+                <a class="btn btn-warning" th:href="@{/producto/listado}">[[#{index.botonProductos}]]</a>
             </div>
         </section>
         <section class="features py-5">
@@ -18,22 +18,27 @@
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <div class="feature">
-                            <h3>Calidad</h3>
-                            <p>Nuestra calidad está garantizada por años de experiencia.</p>
+                            <h3>[[#{index.calidad}]]</h3>
+                            <p>[[#{index.descripcion.calidad}]]</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="feature">
-                            <h3>Confianza</h3>
-                            <p>Confiamos en nuestro trabajo y queremos que también confíes en nosotros.</p>
+                            <h3>[[#{index.confianza}]]</h3>
+                            <p>[[#{index.descripcion.confianza}]]</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="feature">
-                            <h3>Soporte</h3>
-                            <p>Ofrecemos soporte continuo a todos nuestros clientes.</p>
+                            <h3>[[#{index.soporte}]]</h3>
+                            <p>[[#{index.descripcion.soporte}]]</p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div>
+                <div class="container text-center">
+                    <img src="https://cdn-icons-gif.flaticon.com/10606/10606571.gif" alt="Imagen de una tienda"/>
                 </div>
             </div>
         </section>

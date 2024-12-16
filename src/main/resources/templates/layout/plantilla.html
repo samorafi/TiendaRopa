@@ -44,12 +44,12 @@
                         </ul>
                         <form class="d-flex me-3" th:action="@{/producto/buscar}" method="get">
                             <input class="form-control me-2" type="search" name="query" placeholder="Buscar" aria-label="Buscar">
-                                <button class="btn btn-outline-light" type="submit">Buscar</button>
+                                <button class="btn btn-outline-light" type="submit">[[#{plantilla.buscar}]]</button>
                         </form>
 
                         <div class="d-flex align-items-center">
                             <a th:href="@{/carrito/listado}" class="btn btn-outline-light me-3">
-                                <i class="bi bi-cart"></i> Carrito
+                                <i class="bi bi-cart"></i> [[#{plantilla.carrito}]]
                             </a>                            
                             <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
                                 <li class="nav-item">

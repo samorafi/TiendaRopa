@@ -9,14 +9,14 @@
 
         <section th:fragment="ventanaContacto" class="contact-info py-5">
             <div class="container">
-                <h2 class="text-center mb-4">Contacto</h2>
+                <h2 class="text-center mb-4">[[#{contacto.titulo}]]</h2>
                 <div class="row mb-5">
                     <div class="col-md-6">
-                        <h4>Información de Contacto</h4>
-                        <p><i class="bi bi-geo-alt"></i> Dirección: Calle Principal, Ciudad, País</p>
-                        <p><i class="bi bi-telephone"></i> Teléfono: +123 456 7890</p>
-                        <p><i class="bi bi-envelope"></i> Correo Electrónico: contacto@tiendaropa.com</p>
-                        <p><i class="bi bi-clock"></i> Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM</p>
+                        <h4>[[#{contacto.informacion}]]</h4>
+                        <p><i class="bi bi-geo-alt"></i> [[#{contacto.direccion}]]</p>
+                        <p><i class="bi bi-telephone"></i> [[#{contacto.telefono}]]</p>
+                        <p><i class="bi bi-envelope"></i> [[#{contacto.correo}]]</p>
+                        <p><i class="bi bi-clock"></i> [[#{contacto.horario}]]</p>
                     </div>
                     <div class="col-md-6">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d245.6256724712078!2d-84.07914462239104!3d9.933061407481125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2scr!4v1731454296925!5m2!1ses!2scr" width="600" height="450" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -26,26 +26,26 @@
         </section>
         <section th:fragment="formularioCotizacion" class="quote-request py-5 bg-light">
             <div class="container">
-                <h2 class="text-center mb-4">Solicitar una Cotización</h2>
+                <h2 class="text-center mb-4">[[#{contacto.cotizacion.titulo}]]</h2>
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Formulario de Cotización</h5>
+                                <h5 class="card-title">[[#{contacto.formulario}]]</h5>
                                 <form>
                                     <div class="mb-3">
-                                        <label for="quoteName" class="form-label">Nombre Completo</label>
+                                        <label for="quoteName" class="form-label">[[#{contacto.nombre}]]</label>
                                         <input type="text" class="form-control" id="quoteName" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="quoteEmail" class="form-label">Correo Electrónico</label>
+                                        <label for="quoteEmail" class="form-label">[[#{contacto.correo.cotizacion}]]</label>
                                         <input type="email" class="form-control" id="quoteEmail" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="quoteDetails" class="form-label">Detalles de la Solicitud</label>
+                                        <label for="quoteDetails" class="form-label">[[#{contacto.detalles}]]</label>
                                         <textarea class="form-control" id="quoteDetails" rows="4" required></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-custom-warning">Enviar Solicitud</button>
+                                    <button type="submit" class="btn btn-custom-warning">[[#{contacto.enviar}]]</button>
                                 </form>
                             </div>
                         </div>
