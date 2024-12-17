@@ -31,7 +31,6 @@ create table tiendaRopa.producto (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
-/*Se crea la tabla de clientes llamada cliente... igual que la clase Cliente */
 CREATE TABLE tiendaRopa.usuario (
   id_usuario INT NOT NULL AUTO_INCREMENT,
   username varchar(20) NOT NULL,
@@ -71,17 +70,31 @@ create table tiendaRopa.venta (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
-/* Se crea la tabla para reseñas */
+create table tiendaRopa.rol (
+  id_rol INT NOT NULL AUTO_INCREMENT,
+  nombre varchar(20),
+  id_usuario int,
+  PRIMARY KEY (id_rol),
+  foreign key fk_rol_usuario (id_usuario) references usuario(id_usuario)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
 CREATE TABLE tiendaRopa.resena (
   id_resena INT NOT NULL AUTO_INCREMENT,
-  id_usuario INT NOT NULL,
-  id_producto INT NOT NULL,
-  calificacion INT NOT NULL,
+  nombre VARCHAR (50),
   comentario VARCHAR(1000),
-  fecha DATE,
-  PRIMARY KEY (id_resena),
-  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
-  FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
+  PRIMARY KEY (id_resena)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+CREATE TABLE tiendaRopa.cotizacion (
+  id_cotizacion INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR (50),
+  correo VARCHAR (50),
+  detalle VARCHAR(1000),
+  PRIMARY KEY (id_cotizacion)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
@@ -156,7 +169,6 @@ INSERT INTO tiendaRopa.producto (id_categoria, descripcion, detalle, precio, exi
 (9, 'Calcetines Invisibles', 'Calcetines invisibles de algodón, perfectos para usar con zapatillas.', 5000, 30, 'https://media.futbolmania.com/media/catalog/product/cache/1/image/0f330055bc18e2dda592b4a7c3a0ea22/S/X/SX4863-900_imagen-del-pack-3-calcetines-invisibles-nike-lightweight-2019-negro-blanco-carne_1_frontal.jpg', true),
 (9, 'Calzoncillos Boxer', 'Calzoncillos tipo boxer, con soporte adicional y material transpirable.', 14000, 18, 'https://images.hugoboss.com/is/image/boss/hbeu50475282_999_100?$re_fullPageZoom$&qlt=85&fit=crop,1&align=1,1&bgcolor=ebebeb&lastModified=1716992584000&wid=1200&hei=1818', true);
 
-/*Se crean 6 facturas */   /*'Activa','Pagada','Anulada')*/
 INSERT INTO tiendaRopa.factura (id_factura,id_usuario,fecha,total,estado) VALUES
 (1,1,'2022-01-05',211560,2),
 (2,2,'2022-01-07',554340,2),
@@ -185,24 +197,7 @@ INSERT INTO tiendaRopa.venta (id_venta,id_factura,id_producto,precio,cantidad) v
 (17,3,12,60000,1),
 (18,3,10,50000,3);
 
-create table tiendaRopa.rol (
-  id_rol INT NOT NULL AUTO_INCREMENT,
-  nombre varchar(20),
-  id_usuario int,
-  PRIMARY KEY (id_rol),
-  foreign key fk_rol_usuario (id_usuario) references usuario(id_usuario)
-)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
-
 insert into tiendaRopa.rol (id_rol, nombre, id_usuario) values
  (1,'ROLE_ADMIN',1), (2,'ROLE_VENDEDOR',1), (3,'ROLE_USER',1),
  (4,'ROLE_VENDEDOR',2), (5,'ROLE_USER',2),
  (6,'ROLE_USER',3);
-
-INSERT INTO tiendaRopa.resena (id_usuario, id_producto, calificacion, comentario, fecha) VALUES
-(1, 1, 5, 'La camiseta es de excelente calidad, muy cómoda y el color es perfecto.', '2024-11-01'),
-(2, 5, 4, 'El pantalón vaquero es muy cómodo y resistente, aunque el ajuste no fue perfecto.', '2024-11-02'),
-(3, 9, 5, 'La chaqueta de cuero tiene un diseño increíble y se siente muy resistente. Me encantó.', '2024-11-03');
-
-select * from producto;
