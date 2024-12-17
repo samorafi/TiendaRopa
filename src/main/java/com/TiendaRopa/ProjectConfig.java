@@ -113,7 +113,8 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/usuario/eliminar/**",
                         "/usuario/guardar",
                         "/usuario/modificar/**",
-                        "/usuario/nuevo"
+                        "/usuario/nuevo",
+                        "/usuario/listado"
                 ).hasRole("ADMIN")
                 // Rutas restringidas a ADMIN y VENDEDOR
                 .requestMatchers(

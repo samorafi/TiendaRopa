@@ -64,6 +64,14 @@
 
         <!-- 3 Sección principal para mostrar la informaccion de la entidad categoria -->
         <section th:fragment="listadoCategorias" id="categorias">
+            <div class="col-md text-center">
+                <div class="card text-center bg-dark text-white mb-1">
+                    <div class="card-body">
+                        <h3>[[#{categoria.total}]]</h3>
+                        <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalCategorias}]]</h4>
+                    </div>
+                </div>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
@@ -99,15 +107,7 @@
                                 <span>[[#{lista.vacia}]]</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="card text-center bg-dark text-white mb-1">
-                            <div class="card-body">
-                                <h3>[[#{categoria.total}]]</h3>
-                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalCategorias}]]</h4>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </section>

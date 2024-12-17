@@ -80,13 +80,34 @@
                         </form>
                     </div>
                 </div>
+                <div class="mb-3">
+                    <label for="roles">[[#{usuario.roles}]]</label>
+                    <div>
+                        <th:block th:each="rol : ${roles}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" th:id="'rol_' + ${rol.id}" th:name="roles" 
+                                       th:value="${rol.id}" />
+                                <label class="form-check-label" th:for="'rol_' + ${rol.id}">[[${rol.nombre}]]</label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <!-- 3 Sección principal para mostrar la informaccion de la entidad usuario -->
         <section th:fragment="listadoUsuarios" id="usuarios">
+            <div class="col-md text-center">
+                <div class="card text-center bg-dark text-white mb-3">
+                    <div class="card-body">
+                        <h3>[[#{usuario.total}]]</h3>
+                        <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalUsuarios}]]</h4>
+                    </div>
+                </div>                        
+            </div>
             <div class="container">
-                <div class="row">
+                <div class="column">                    
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
@@ -107,6 +128,7 @@
                                             <td>[[${usuario.username}]]</td>
                                             <td>[[${usuario.nombre}]]</td>
                                             <td>[[${usuario.apellidos}]]</td>
+                                            <td><img th:src="@{${usuario.rutaImagen}}" alt="Imagen del producto" class="w-25 img-fluid" /></td>
                                             <td sec:authorize="hasRole('ROLE_ADMIN')">
                                                 <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
                                                    class="btn btn-danger">
@@ -121,15 +143,7 @@
                                 <span>[[#{lista.vacia}]]</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-center bg-success text-white mb-3">
-                            <div class="card-body">
-                                <h3>[[#{usuario.total}]]</h3>
-                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalUsuarios}]]</h4>
-                            </div>
-                        </div>                        
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </section>
